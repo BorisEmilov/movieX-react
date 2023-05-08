@@ -1,0 +1,198 @@
+<Modal
+                onClose={handleClose}
+            >
+                {
+                    modal.title &&
+                    <div className='absolute w-[80%] max-w-[600px] h-[80%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-gradient-to-r from-[#3e1f47] to-[#212f45] rounded-[20px] flex flex-col items-center justify-start gap-4 p-2'>
+                        <div className='w-[100%] text-center text-white text-[16px] md:text-[20px]'>
+                            <p><b>{modal.title}</b></p>
+                        </div>
+                        <div className='w-[100%] flex items-center justify-center gap-4'>
+                            <img src={modal.posterURLs[185]} alt="" />
+                        </div>
+                    </div>
+                }
+            </Modal>
+
+
+
+
+
+
+
+
+
+
+
+ {
+                open &&
+                <div className='absolute h-[100vh] w-[100vw] flex flex-col items-center justify-center backdrop-blur-sm bg-white/30 gap-2'>
+                    <div className='flex items-center justify-center rounded-[50%] bg-gray-600 p-1'>
+                        <RxCross1 size={30} color='white' onClick={handleClose} />
+                    </div>
+                    {
+                        modal.title &&
+                        <div className='w-[80%] max-w-[600px] h-[75%] bg-gradient-to-r from-[#0b525b] to-[#006466] flex flex-col items-center justify-start overflow-auto'>
+
+                            <div className='w-[100%] flex items-center justify-center gap-4'>
+                                <img src={modal.backdropURLs[780]} alt={modal.backdropPath} className='w-[100%]' />
+                            </div>
+                            <div className='w-[100%] text-center text-white text-[16px] md:text-[20px] flex items-center justify-between p-2'>
+                                <p className='text-[20px] md:text-[25px]'><b>{modal.title}</b></p>
+                                <Link to={`/film/${modal.title}`}>
+                                    <div className='flex items-center justify-center rounded-[50%] p-2 bg-gray-100 cursor-pointer'>
+                                        <BiDotsVerticalRounded size={18} color='black' />
+                                    </div>
+                                </Link>
+                            </div>
+                            <div className='w-[100%] flex items-center justify-center text-center text-white gap-2 p-2'>
+                                {
+                                    modal.genres.map((elem) => (
+                                        <p className='text-[13px] md:text-[16px]'>{elem.name}</p>
+                                    ))
+                                }
+                            </div>
+                            <Divider sx={{ width: '90%' }} />
+                            <div className='w-[100%] flex items-center text-white gap-1'>
+                                <div className='w-[100%] flex flex-col items-start justify-start text-left p-2'>
+                                    <p className='text-[14px] md:text-[18px]'><b>{modal.year}</b></p>
+                                    <p className='text-[13px] md:text-[16px]'><b>Director:</b> {modal.directors.join(", ")}</p>
+                                </div>
+                            </div>
+                            <div className='w-[100%] p-2 text-left text-white text-[13px] md:text-[16px]'>
+                                <p>{modal.overview}</p>
+                            </div>
+                            <div className='w-[100%] flex text-left items-start justify-start p-2 gap-2 text-[#7d8597]'>
+                                <p className='text-[13px] md:text-[16px]'><b>Casting:</b> {modal.cast.join(", ")}</p>
+                            </div>
+                            <Divider sx={{ width: '90%' }} />
+                            {
+                                Object.keys(modal.streamingInfo.us).length >= 1 ?
+                                    <div className='w-[100%] flex flex-col items-center justify-center text-center p-2 gap-1'>
+                                        <p className='text-[13px] md:text-[16px] text-white'>Where can i see this movie ?</p>
+                                        <div className='flex items-center justify-center text-center text-white gap-2'>
+                                            <p><b>{Object.keys(modal.streamingInfo.us).join(", ")}</b></p>
+                                        </div>
+                                        <div className='w[100%] text-center text-blue-500 text-[13px] md:text[15px]'>
+                                            <Link to={`/film/${modal.title}`}>
+                                                <p>See more details</p>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    :
+                                    <div className='w-[100%] flex flex-col items-center justify-center text-left p-2 gap-2 text-white'>
+                                        <RiEmotionSadLine size={25} color='white' />
+                                        <p><b>no data about this movie !!!</b></p>
+                                    </div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+
+            ["watch/providers"].results.US
+
+
+
+            
+`${data["watch/providers"].results}.${country}`
+
+
+
+0
+: 
+{id: 28, name: 'Action'}
+1
+: 
+{id: 12, name: 'Adventure'}
+2
+: 
+{id: 16, name: 'Animation'}
+3
+: 
+{id: 35, name: 'Comedy'}
+4
+: 
+{id: 80, name: 'Crime'}
+5
+: 
+{id: 99, name: 'Documentary'}
+6
+: 
+{id: 18, name: 'Drama'}
+7
+: 
+{id: 10751, name: 'Family'}
+8
+: 
+{id: 14, name: 'Fantasy'}
+9
+: 
+{id: 36, name: 'History'}
+10
+: 
+{id: 27, name: 'Horror'}
+11
+: 
+{id: 10402, name: 'Music'}
+12
+: 
+{id: 9648, name: 'Mystery'}
+13
+: 
+{id: 10749, name: 'Romance'}
+14
+: 
+{id: 878, name: 'Science Fiction'}
+15
+: 
+{id: 10770, name: 'TV Movie'}
+16
+: 
+{id: 53, name: 'Thriller'}
+17
+: 
+{id: 10752, name: 'War'}
+18
+: 
+{id: 37, name: 'Western'}
+
+
+
+
+useEffect(() => {
+      axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US&append_to_response=watch%2Fproviders`).then((response) => {
+        setData(response.data)
+      })
+    }, [`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US&append_to_response=watch%2Fproviders`])
+  
+  
+    useEffect(() => {
+      axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${key}&language=en-US&page=1`).then((response) => {
+        setRecomended(response.data)
+      })
+    }, [`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US&append_to_response=watch%2Fproviders`])
+    .then(() => setIsLoading(false));
+
+
+
+if(value !== ''){
+        axios.get(`https://api.themoviedb.org/3/movie/${value}?api_key=${key}&language=en-US&append_to_response=watch%2Fproviders`).then((response) => {
+            setModal(response.data)
+        })
+        setValue('')
+    }
+
+
+ if(value !== ''){
+        axios.get(`https://api.themoviedb.org/3/movie/${value}?api_key=${key}&language=en-US&append_to_response=watch%2Fproviders`).then((response) => {
+            setModal(response.data)
+        })
+        setValue('')
+    }
+
+
+    {
+        isLoading ?
+          <Loader />
+          :

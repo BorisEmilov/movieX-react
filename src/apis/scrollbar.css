@@ -1,0 +1,9 @@
+
+
+  
+  /* Chrome, Edge and Safari */
+  #scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  
