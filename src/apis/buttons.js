@@ -1,3 +1,14 @@
+import action from '../assets/20051517.jpg'
+import history from '../assets/7ACf5GwwzmzuTFzPLEg9ZagvXUa.jpg'
+import horror from '../assets/Terrifier-2-c05ef0c.png'
+import fiction from '../assets/Mad_Max_Fury_Road-397817030-large.jpg'
+import war from '../assets/e9066fbb111bc061592d0eafe42579e60c-08-war-movies-ranking-1.rvertical.w570.webp'
+import comedy from '../assets/ar_el-dictador-2012_p_m.jpg'
+import mistery from '../assets/au_poster_20thcentury_murderontheorientexpress_afcb9ced.jpg'
+import fantasy from '../assets/0623168d086a9e0db1af99f13a19864ead23792b.jpg'
+import drama from '../assets/840_560.jpg'
+
+
 
 const page_buttons = [
     {
@@ -64,4 +75,48 @@ const genres = [
     { id: 37, name: 'Western' },
 ]
 
-export { page_buttons, genres }
+
+const movie_search_recomendation = [
+    {
+        id: 28,
+        name: 'action',
+        icon: action
+    },
+    {
+        id: 36,
+        name: 'history',
+        icon: history
+    },
+    {
+        id: 14,
+        name: 'fantasy',
+        icon: fantasy
+    },
+    {
+        id: 10752,
+        name: 'war',
+        icon: war
+    },
+    {
+        id: 18,
+        name: 'drama',
+        icon: drama
+    },
+    {
+        id: 9648,
+        name: 'mistery',
+        icon: mistery
+    },
+    {
+        id: 27,
+        name: 'horror',
+        icon: horror
+    },
+    {
+        id: 35,
+        name: 'comedy',
+        icon: comedy
+    }
+]
+
+export { page_buttons, genres, movie_search_recomendation }

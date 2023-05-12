@@ -2,12 +2,13 @@ import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import Nav from './Nav'
-import { Divider } from '@mui/material'
+import { Avatar, Divider } from '@mui/material'
 import { RxCross1 } from 'react-icons/rx'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { RiEmotionSadLine } from 'react-icons/ri'
 import Loader from './Loader'
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md'
+import zIndex from '@mui/material/styles/zIndex'
 
 
 
@@ -24,6 +25,11 @@ const Film = () => {
   const [data, setData] = useState([])
   const [recomended, setRecomended] = useState([])
   const [country, setCountry] = useState('US')
+
+  const [credits, setCredits] = useState('')
+  const [modalImageLoad, setModalImageLoad] = useState(true)
+
+  const [avatarLoad, setAvatarLoad] = useState(true)
 
   const [open, setOpen] = useState(false)
   const [modal, setModal] = useState([])
@@ -62,11 +68,19 @@ const Film = () => {
   }, [`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${key}&language=en-US`])
 
 
+  useEffect(() => {
+    axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${key}&language=en-US`).then((response) => {
+      setCredits(response.data)
+    }).then(() => setAvatarLoad(false))
+  }, [`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${key}&language=en-US`])
+
+
+
 
   if (value !== '') {
     axios.get(`https://api.themoviedb.org/3/movie/${value}?api_key=${key}&language=en-US&append_to_response=watch%2Fproviders`).then((response) => {
       setModal(response.data)
-    })
+    }).then(() => setModalImageLoad(false))
     setValue('')
   }
 
@@ -90,10 +104,13 @@ const Film = () => {
 
               <div className='w-[100%] flex items-center justify-center gap-4'>
                 {
-                  modal.backdrop_path ?
-                    <img src={`${baseURLImg}${modal.backdrop_path}`} alt='/' className='w-[100%]' />
+                  modalImageLoad ?
+                    <div></div>
                     :
-                    <p className='text-[13px] text-red-500'>**no image available**</p>
+                    modal.backdrop_path ?
+                      <img src={`${baseURLImg}${modal.backdrop_path}`} alt='/' className='w-[100%]' />
+                      :
+                      <p className='text-[13px] text-red-500'>**no image available**</p>
                 }
               </div>
               <div className='w-[100%] text-center text-white text-[16px] md:text-[20px] flex items-center justify-between p-2'>
@@ -216,6 +233,7 @@ const Film = () => {
               <p><b>{data.title}</b></p>
             }
           </div>
+
           <div className='w-[100%] max-w-[600px] flex items-center justify-center gap-4 mt-2'>
             {
               data.poster_path &&
@@ -272,6 +290,42 @@ const Film = () => {
             <div className='w-[100%] max-w-[700px] flex items-center justify-center text-center text-[14px] md:text-[17px] text-white'>
               <p>{data.overview}</p>
             </div>
+          }
+
+          {
+            avatarLoad ?
+              <div></div>
+              :
+              credits.cast ?
+                <div className='w-[100%]  flex items-center justify-center  text-white'>
+                  {
+                    credits.cast.slice(0, 5).map((elem) => (
+                      <div className='p-2 min-h-[130px] flex flex-col items-center justify-start gap-1'>
+                        <div className='w-[50px] h-[50px] md:w-[70px] md:h-[70px] flex items-center justify-center rounded-[50%] overflow-hidden'>
+                          <img src={`${baseURLImg}${elem.profile_path}`} alt={elem.name} className=' object-cover' />
+                        </div>
+                        <div className='w-[100%] flex flex-col items-center justify-center text-center text-white text-[13px] md:text-[15px]'>
+                          <p><b>{elem.name}</b></p>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+                :
+                <div className='text-white w-[100%] flex items-center justify-center text-center'>
+                  <p className='text-white text-[13px] md:text-[15px]'>sorry but thers no casting info</p>
+                </div>
+          }
+          {
+            video.results ?
+              video.results.map((elem) => (
+                elem.site === 'YouTube' ?
+                  <iframe className='w-[100%]  max-w-[480px] min-h-[260px] md:min-h-[330px] md:max-w-[550px]  flex flex-row items-center justify-center flex-wrap'  src={`https://www.youtube.com/embed/${elem.key}`} frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  :
+                  <div>no trailer</div>
+              )).slice(0, 1)
+              :
+              <div>no trailer</div>
           }
           <Divider sx={{ width: '95%', maxWidth: '700px' }} />
           <div className='w-[100%] max-w-[700px] flex flex-col items-center jus gap-1 text-white'>
@@ -386,7 +440,10 @@ const Film = () => {
               </div>
             </>
           }
+
+
         </div>
+
       }
     </>
   )

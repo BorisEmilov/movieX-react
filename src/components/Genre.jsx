@@ -180,34 +180,34 @@ const Genre = () => {
               }
             </div>
             <div className='w-[100%] max-w-[600px] flex items-center justify-center text-white gap-2'>
-              <div onClick={() => setPage(1)} className={`flex items-center justify-center p-1 ${page === 1 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(1)} className={`flex items-center justify-center p-1 ${page === 1 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>1</p>
               </div>
-              <div onClick={() => setPage(2)} className={`flex items-center justify-center p-1 ${page === 2 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(2)} className={`flex items-center justify-center p-1 ${page === 2 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>2</p>
               </div>
-              <div onClick={() => setPage(3)} className={`flex items-center justify-center p-1 ${page === 3 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(3)} className={`flex items-center justify-center p-1 ${page === 3 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>3</p>
               </div>
-              <div onClick={() => setPage(4)} className={`flex items-center justify-center p-1 ${page === 4 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(4)} className={`flex items-center justify-center p-1 ${page === 4 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>4</p>
               </div>
-              <div onClick={() => setPage(5)} className={`flex items-center justify-center p-1 ${page === 5 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(5)} className={`flex items-center justify-center p-1 ${page === 5 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>5</p>
               </div>
-              <div onClick={() => setPage(6)} className={`flex items-center justify-center p-1 ${page === 6 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(6)} className={`flex items-center justify-center p-1 ${page === 6 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>6</p>
               </div>
-              <div onClick={() => setPage(7)} className={`flex items-center justify-center p-1 ${page === 7 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(7)} className={`flex items-center justify-center p-1 ${page === 7 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>7</p>
               </div>
-              <div onClick={() => setPage(8)} className={`flex items-center justify-center p-1 ${page === 8 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(8)} className={`flex items-center justify-center p-1 ${page === 8 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>8</p>
               </div>
-              <div onClick={() => setPage(9)} className={`flex items-center justify-center p-1 ${page === 9 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(9)} className={`flex items-center justify-center p-1 ${page === 9 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>9</p>
               </div>
-              <div onClick={() => setPage(10)} className={`flex items-center justify-center p-1 ${page === 10 && 'bg-gray-400'} rounded-md`}>
+              <div onClick={() => setPage(10)} className={`flex items-center justify-center p-1 ${page === 10 && 'bg-gray-400'} rounded-md cursor-pointer`}>
                 <p onClick={() => setIsLoading(true)}>10</p>
               </div>
             </div>

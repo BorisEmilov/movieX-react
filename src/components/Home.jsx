@@ -10,6 +10,7 @@ import LogoTMDBLarge from '../assets/large-tmdb.svg'
 import Loader from './Loader'
 import '../apis/scrollbar.css'
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from 'react-icons/md'
+import { movie_search_recomendation } from '../apis/buttons'
 
 
 
@@ -31,7 +32,7 @@ const Home = () => {
     const [history, setHistory] = useState([])
     const [modal, setModal] = useState([])
 
-    const containerRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+    const containerRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 
     const [randomIndex, setRandomIndex] = useState([])
 
@@ -286,6 +287,34 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
+
+                            <div className='w-[100%] max-w-[550px] md:max-w-[1300px] flex flex-col items-start justify-center text-white'>
+                                <div ref={containerRefs[5]} id='scrollbar' className='w-[100%] flex items-center justify-start gap-4 overflow-auto pt-2 pb-2 '>
+                                    {
+                                        movie_search_recomendation.map((elem) => (
+                                            <Link to={`/genre/${elem.id}`}>
+                                                <div className='w-[100px] flex flex-col items-center justify-start cursor-pointer'>
+                                                    <div className='w-[90px] h-[90px] flex items-center justify-center overflow-hidden rounded-[50%]'>
+                                                        <img src={elem.icon} alt="" className='h-[100%] w-[100%] object-cover' />
+                                                    </div>
+                                                    <p className='text-white text-14px md:text-[16px]'><b>{elem.name}</b></p>
+                                                </div>
+                                            </Link>
+                                        ))
+                                    }
+                                </div>
+                                <div className='w-[100%] flex items-center justify-center gap-4'>
+                                    <div onClick={() => scrollContainer(-200, containerRefs, 5)} className='w-[40px] h-[40px] flex items-center justify-center rounded-[50%] bg-slate-400'>
+                                        <MdOutlineArrowBackIos size={25} color='black' />
+                                    </div>
+                                    <div onClick={() => scrollContainer(200, containerRefs, 5)} className='w-[40px] h-[40px] flex items-center justify-center rounded-[50%] bg-slate-400'>
+                                        <MdOutlineArrowForwardIos size={25} color='black' />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <div className='w-[100%] max-w-[550px] md:max-w-[1300px] flex flex-col items-start justify-center text-white'>
                                 <p><b>Most Popular</b></p>
                                 <div ref={containerRefs[1]} id='scrollbar' className='w-[100%] flex items-center justify-start gap-4 overflow-auto pt-2 pb-2 '>

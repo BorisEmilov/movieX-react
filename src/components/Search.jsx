@@ -9,6 +9,7 @@ import { RiEmotionSadLine } from 'react-icons/ri'
 import Home from './Home'
 import Nav from './Nav'
 import Loader from './Loader'
+import { movie_search_recomendation } from '../apis/buttons'
 
 
 
@@ -177,8 +178,22 @@ const Search = () => {
 
         {
           isLoading ?
-            <div className='w-[100%] h-[100%] flex items-center justify-center gap-3 text-[16px] md:text-[20px] text-white'>
-              <p><b>Search for movie</b></p>
+            <div className='w-[100%] h-[100%] flex flex-col items-center justify-start gap-8 text-[16px] md:text-[20px] text-white'>
+              <div className='w-[100%] max-w-[550px] h-[400px] flex flex-wrap items-center justify-center gap-4 p-2 overflow-auto'>
+                {
+                  movie_search_recomendation.map((elem) => (
+                    <Link to={`/genre/${elem.id}`}>
+                      <div className='w-[100px] flex flex-col items-center justify-start cursor-pointer'>
+                        <div className='w-[90px] h-[90px] flex items-center justify-center overflow-hidden rounded-[50%]'>
+                          <img src={elem.icon} alt="" className='h-[100%] w-[100%] object-cover' />
+                        </div>
+                        <p className='text-white text-14px md:text-[16px]'><b>{elem.name}</b></p>
+                      </div>
+                    </Link>
+                  ))
+                }
+              </div>
+              <p><b>*** Search for movie ***</b></p>
             </div>
             :
             availabilityData.results ?
@@ -188,51 +203,65 @@ const Search = () => {
                     <RxCross2 size={20} color='white' />
                   </div>
                 </div>
-                <div className='w-[100%] max-w-[550px] md:max-w-[1300px] h-[100%] text-[14px] md:text-[18px] lg:text-[20px] text-white grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 items-start justify-items-center gap-2 overflow-auto'>
+                <div className='w-[100%] max-w-[700px] h-[100%] text-[14px] md:text-[18px] lg:text-[20px] text-white grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 items-start justify-items-center gap-2 overflow-auto'>
                   {
                     availabilityData.results.map((elem) => (
                       elem.backdrop_path ?
-                      elem.poster_path ? 
-                      <div onClick={handleOpen}>
-                        <div onClick={() => setValue(elem.id)} className='w-[90%] max-w-[250px]  bg-[#0b525b] cursor-pointer flex flex-col items-center justify-start'>
-                          <img src={`${baseURLImg}${elem.poster_path}`} alt='/' className='object-cover' />
-                        </div>
-                      </div>
-                      : !elem.poster_path ?
-                      <div onClick={() => setOpen(true)}>
-                        <div onClick={() => setValue(elem.id)} className='min-w-[100px] md:min-w-[140px] min-h-[130px] md:min-h-[180px] text-center text-white flex flex-col p-1 gap-1 items-center justify-center border-solid border-[1px] border-white'>
-                        <img src={`${baseURLImg}${elem.poster_path}`} alt="/" className='object-cover' />
-                          <p className='text-[14px] md:text-[16px]'>{elem.title}</p>
-                          <p className='text-[12px] md:text-[14px] text-blue-300'>see details</p>
-                        </div>
-                      </div>
-                      :
-                      null
-                      :
-                      elem.poster_path ? 
-                      <div onClick={handleOpen}>
-                        <div onClick={() => setValue(elem.id)} className='w-[90%] max-w-[250px]  bg-[#0b525b] cursor-pointer flex flex-col items-center justify-start'>
-                          <img src={`${baseURLImg}${elem.poster_path}`} alt='/' className='object-cover' />
-                        </div>
-                      </div>
-                      : !elem.poster_path ?
-                      <div onClick={() => setOpen(true)}>
-                        <div onClick={() => setValue(elem.id)} className='min-w-[100px] md:min-w-[140px] min-h-[130px] md:min-h-[180px] text-center text-white flex flex-col p-1 gap-1 items-center justify-center border-solid border-[1px] border-white'>
-                        <img src={`${baseURLImg}${elem.poster_path}`} alt="/" className='object-cover' />
-                          <p className='text-[14px] md:text-[16px]'>{elem.title}</p>
-                          <p className='text-[12px] md:text-[14px] text-blue-300'>see details</p>
-                        </div>
-                      </div>
-                      :
-                      null
+                        elem.poster_path ?
+                          <div onClick={handleOpen}>
+                            <div onClick={() => setValue(elem.id)} className='w-[90%] max-w-[250px]  bg-[#0b525b] cursor-pointer flex flex-col items-center justify-start'>
+                              <img src={`${baseURLImg}${elem.poster_path}`} alt='/' className='object-cover' />
+                            </div>
+                          </div>
+                          : !elem.poster_path ?
+                            <div onClick={() => setOpen(true)}>
+                              <div onClick={() => setValue(elem.id)} className='min-w-[100px] md:min-w-[140px] min-h-[130px] md:min-h-[180px] text-center text-white flex flex-col p-1 gap-1 items-center justify-center border-solid border-[1px] border-white'>
+                                <img src={`${baseURLImg}${elem.poster_path}`} alt="/" className='object-cover' />
+                                <p className='text-[14px] md:text-[16px]'>{elem.title}</p>
+                                <p className='text-[12px] md:text-[14px] text-blue-300'>see details</p>
+                              </div>
+                            </div>
+                            :
+                            null
+                        :
+                        elem.poster_path ?
+                          <div onClick={handleOpen}>
+                            <div onClick={() => setValue(elem.id)} className='w-[90%] max-w-[250px]  bg-[#0b525b] cursor-pointer flex flex-col items-center justify-start'>
+                              <img src={`${baseURLImg}${elem.poster_path}`} alt='/' className='object-cover' />
+                            </div>
+                          </div>
+                          : !elem.poster_path ?
+                            <div onClick={() => setOpen(true)}>
+                              <div onClick={() => setValue(elem.id)} className='min-w-[100px] md:min-w-[140px] min-h-[130px] md:min-h-[180px] text-center text-white flex flex-col p-1 gap-1 items-center justify-center border-solid border-[1px] border-white'>
+                                <img src={`${baseURLImg}${elem.poster_path}`} alt="/" className='object-cover' />
+                                <p className='text-[14px] md:text-[16px]'>{elem.title}</p>
+                                <p className='text-[12px] md:text-[14px] text-blue-300'>see details</p>
+                              </div>
+                            </div>
+                            :
+                            null
                     ))
                   }
 
                 </div>
               </div>
               :
-              <div className='w-[100%] h-[100%] flex items-center justify-center gap-3 text-[16px] md:text-[20px] text-white'>
-                <p><b>Search for movie</b></p>
+              <div className='w-[100%] h-[100%] flex flex-col items-center justify-start gap-8 text-[16px] md:text-[20px] text-white'>
+                <div className='w-[100%] max-w-[550px] h-[400px] flex flex-wrap items-center justify-center gap-4 p-2 overflow-auto'>
+                  {
+                    movie_search_recomendation.map((elem) => (
+                      <Link to={`/genre/${elem.id}`}>
+                        <div className='w-[100px] flex flex-col items-center justify-start cursor-pointer'>
+                          <div className='w-[90px] h-[90px] flex items-center justify-center overflow-hidden rounded-[50%]'>
+                            <img src={elem.icon} alt="" className='h-[100%] w-[100%] object-cover' />
+                          </div>
+                          <p className='text-white text-14px md:text-[16px]'><b>{elem.name}</b></p>
+                        </div>
+                      </Link>
+                    ))
+                  }
+                </div>
+                <p><b>*** Search for movie ***</b></p>
               </div>
         }
 
